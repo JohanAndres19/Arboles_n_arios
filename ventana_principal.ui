@@ -27,16 +27,6 @@
      <string>Agregar</string>
     </property>
    </widget>
-   <widget class="QGraphicsView" name="canvas">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>40</y>
-      <width>721</width>
-      <height>391</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="texto">
     <property name="geometry">
      <rect>
@@ -45,6 +35,14 @@
       <width>113</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+     </font>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Normal</enum>
     </property>
    </widget>
    <widget class="QLineEdit" name="texto_traducido">
@@ -55,6 +53,11 @@
       <width>113</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+     </font>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -93,6 +96,25 @@
     </property>
     <property name="text">
      <string>Traduccion</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="canvas">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>711</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
     </property>
    </widget>
   </widget>
