@@ -1,4 +1,7 @@
 texto pruebas arbol:
 perro,gato,socio,alfa,aleta,alegria,vaticano,venecia,roma,atenas,risaralda,pero,violeta,yodo,yesenia,yuca,queso,que,kilo,kiev,ximena
 tierra,plato,socio,socrates,sociales,porro,separados,ahora,solo,hay,firma,foto,dado,dedo,kilo,kiev,karol,vino,vaticano,venecia,kevin
-columna,conejo,pilas,amar,bicho,nieve,cantar,conflicto,herradura,mimbre,argentino,caballete,tenor,taxi,altiplano,manta,simio,diciembre
+columna,conejo,pilas,amar,bicho,nieve,cantar,conflicto,herradura,mimbre,argentino,caballete,tenor,taxi,altiplano,manta,simio,diciembre,coco,carro,carroza,carpintero
+atenas,argentino,perro,argelia,aroma,ala
+HOLA,ALA,ALFA,ARO,PERRO,ZORRO,ALELI,ATENAS
+hola,aro,perro,aleli,atenas,alegria,argelia

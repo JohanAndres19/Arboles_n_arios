@@ -1,8 +1,9 @@
 import sys
 from PyQt5 import uic
-from PyQt5.QtWidgets import QMainWindow, QApplication, QGraphicsScene, QWidget
+from PyQt5.QtWidgets import QMainWindow, QApplication, QGraphicsScene, QMessageBox, QWidget
 from PyQt5.QtGui import QFont, QPalette, QPen,QPainter,QBrush
 from PyQt5.QtCore import Qt
+from Palabras import Ingresar
 
 class Ventana_principal(QMainWindow):
     def __init__(self):
@@ -37,47 +38,56 @@ class canvas (QWidget):
         super().__init__(parent=parent)
         self.a=None
         self.b =None
+        self.b_palabras=False
+        self.diccionario={}
+        self.palabras=[]
+        self.matriz_dibujar=[]
 
 
     def dibujar(self,valor1,valor2):
-        self.a=valor1.text()
-        self.b=valor2.text()
-        valor1.clear()
-        valor2.clear()
+        if valor1.text()!=''and valor2.text()!='':
+            self.a=valor1.text().split(',')
+            self.b=valor2.text().split(',')
+            if len(self.a)==len(self.b):
+                self.b_palabras=True
+                self.a=[i.strip() for i in self.a]
+                self.b=[i.strip() for i in self.b]
+                self.a=[i.upper() for i in self.a]
+                self.b=[i.upper() for i in self.b]
+                for  i in range(len(self.a)):
+                    self.diccionario[self.a[i]]=self.b[i]
+                self.palabras=self.a
+                self.matriz_dibujar=Ingresar(self.palabras,self.diccionario).verificar()   
+                valor1.clear()
+                valor2.clear()
+            else:
+                QMessageBox.warning(self,"   Advertencia   ", "  Verifique la cantidad de palabras  ")    
+        else:
+            QMessageBox.warning(self,"   Advertencia   ", "  Ingrese Valores    ")
         self.update()
 
 
     def paintEvent(self,evento) :
         painter = QPainter()
         painter.begin(self)
-        if self.a != None and self.b!=None:
+        if self.a != None and self.b!=None and self.b_palabras:
             self.pen =QPen(Qt.red)
             painter.setPen(self.pen)
-            """
-            painter.drawText(30,30,16,15,Qt.AlignCenter,self.a[0])
-            painter.drawLine(36,46,36,61)
-            painter.drawText(30,62,16,15,Qt.AlignCenter,self.a[1])
-            painter.drawLine(36,78,36,93)
-            painter.drawText(30,94,16,15,Qt.AlignCenter,self.a[2])
-            painter.drawLine(36,110,36,125)
-            painter.drawText(30,126,16,15,Qt.AlignCenter,self.a[3])
-            """
-            for i in range(len(self.a)):
-                if i == 0:
-                    painter.drawText(30,30,16,15,Qt.AlignCenter,self.a[i])
-                    painter.drawLine(36,46,36,61)
-                elif i== (len(self.a)-1):
-                    painter.drawText(30,30+(32*i),16,15,Qt.AlignCenter,self.a[i])
-                else:    
-                    painter.drawText(30,30+(32*i),16,15,Qt.AlignCenter,self.a[i])
-                    painter.drawLine(36,46+(32*i),36,61+(32*i))
-
-
+            x=32
+            y=32
+            for i in range(len(self.matriz_dibujar)):
+                if len(self.matriz_dibujar[i])!=0:
+                    for j in range(len(self.matriz_dibujar[i])):
+                      painter.drawText(30+(x*i),40+(j*y),16,15,Qt.AlignCenter,self.matriz_dibujar[i][j])  
+            
+                    
 
 class modelo:
 
     def __init__(self) :
         pass
+
+
 
 
 

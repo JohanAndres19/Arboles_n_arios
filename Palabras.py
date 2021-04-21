@@ -42,27 +42,31 @@ class Ingresar:
         (clase que hay que cambiar para el manejo de interface garfica)
     """
 
-    def __init__(self):  
-        self.lista_palabras = ""
+    def __init__(self,palabras=None,diccionario=None):  
+        self.lista_palabras =palabras
+        self.diccionario= diccionario
         self.lista_letras=[]
-        self.Iniciar()
+        #self.Iniciar()
         
     
     def  Iniciar(self):
         """
             metodo que inicia con la insercion de las palabras que van a componer el arbol 
         """
-        palabras=input(" ingrese las  palabras que desea separadas por comas \n ")
+        archivo = open("prueba.txt",'r')
+        mensaje = archivo.readlines()
+        mensaje.pop(0)
+        palabra=[s.strip('\n')for s in mensaje]
+        palabras=palabra[4]
+        archivo.close()
         self.lista_palabras = palabras.split(',')
-        for i in range(len(self.lista_palabras)):
-            self.lista_palabras[i]=self.lista_palabras[i].strip()
-        self.lista_palabras.sort()
         self.verificar()
         
     def verificar(self):
         posicion=[]
         sublistas=[]
         tamaño=[]
+        self.lista_palabras.sort()
         """ Metodo que se enacarga de buscar las letras semejantes dentro de las 
             palabras ademas de agrupar las palabras semejantes  de tal forma que se mas facil  relacionar 
             que palabra es padre de otra 
@@ -85,8 +89,9 @@ class Ingresar:
             contador=0
             contador=((len(i))*(len(i)-1))//2
             tamaño.append(contador)
-        self.letras_agru= self.Agrupar_Letras(tamaño)        
-        construir_arbol(sublistas,self.letras_agru)
+        self.letras_agru= self.Agrupar_Letras(tamaño)
+        a= construir_arbol(sublistas,self.letras_agru,self.diccionario).construir()  
+        return a
 
     def  Agrupar_Palabras(self,posicion):
         """
